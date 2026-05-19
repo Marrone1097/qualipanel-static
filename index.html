@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QualiPanel - Fluxo de Triagem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+    <!-- Ambient Glow Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <!-- Sidebar Menu & Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>QualiPanel</h2>
+            <button class="btn-close-sidebar" id="btn-close-sidebar"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="sidebar-nav">
+            <li id="nav-projetos" class="active"><i class="fas fa-project-diagram"></i> <span>Projetos</span></li>
+            <li id="nav-equipe"><i class="fas fa-users"></i> <span>Equipe</span></li>
+            <li id="nav-relatorios"><i class="fas fa-chart-line"></i> <span>Relatórios</span></li>
+            <li id="nav-config"><i class="fas fa-cog"></i> <span>Configurações</span></li>
+            <li class="nav-divider"></li>
+            <li class="logout"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></li>
+        </ul>
+    </aside>
+
+    <!-- Topbar -->
+    <header class="topbar">
+        <div class="logo">
+            <i class="fas fa-bars" id="btn-open-sidebar" style="cursor: pointer; padding: 5px; border-radius: 4px; transition: background 0.3s;"></i>
+            <h2>QualiPanel <span class="dimmed">— SISTEMA DE RECRUTAMENTO</span></h2>
+        </div>
+        <div class="top-actions">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar por projeto...">
+            </div>
+            <div class="user-profile">
+                <div class="notification-wrapper" style="position: relative;">
+                    <i class="fas fa-bell notification-icon" id="btn-notification"></i>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <h4>Notificações</h4>
+                        <ul>
+                            <li><i class="fas fa-file-excel text-green"></i> <span>Mailing "B2B_SP" processado com sucesso.</span></li>
+                            <li><i class="fas fa-headset text-blue"></i> <span>3 contatos novos agendados via Softphone.</span></li>
+                            <li><i class="fas fa-exclamation-triangle text-yellow"></i> <span>Integração Pix reportou lentidão.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="avatar-circle">CO</div>
+                <div class="user-info">
+                    <span class="user-name">Carlos Oliveira</span>
+                    <span class="user-role">Criador de Projetos</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Journey Area -->
+    <main class="journey-container" id="board">
+        <svg id="journey-line"></svg>
+               <div class="journey-content">
+            
+            <!-- ROW 1: Forward (Left -> Right) -->
+            <div class="journey-level level-forward">
+                <!-- Step 1 -->
+                <div class="journey-step" id="st-1">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-blue"><i class="fas fa-file-import"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">01</span>
+                                <h3>Novos (Mailing)</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Contatos importados via .xlsx/.csv. Aguardando envio da régua de automação.</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-blue">150</span>
+                                    <span class="metric-label">Importados</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value">100%</span>
+                                    <span class="metric-label">Validados</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action">Importar Mailing <i class="fas fa-upload"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="journey-step" id="st-2">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-purple"><i class="fas fa-paper-plane"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">02</span>
+                                <h3>Contatados</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Receberam comunicação automática (E-mail + WhatsApp via Evolution API).</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-purple">120</span>
+                                    <span class="metric-label">Dia 1</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value">30</span>
+                                    <span class="metric-label">Dia 3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action btn-purple">Ver Cadência <i class="fas fa-stream"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="journey-step" id="st-3">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-orange"><i class="fas fa-reply"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">03</span>
+                                <h3>Responderam</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Interações manuais da equipe via Softphone VoIP ou chat no WhatsApp.</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-orange">45%</span>
+                                    <span class="metric-label">Tx. Resposta</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value">12</span>
+                                    <span class="metric-label">Pendentes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action">Abrir Discador <i class="fas fa-phone-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: Backward (Right -> Left) -->
+            <div class="journey-level level-backward">
+                <!-- Step 4 -->
+                <div class="journey-step" id="st-4">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-green"><i class="fas fa-thumbs-up"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">04</span>
+                                <h3>Aceitaram</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Confirmaram interesse na pesquisa qualitativa, focus group ou UX.</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-green">30</span>
+                                    <span class="metric-label">Aceites</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value" style="color:var(--color-red)">5</span>
+                                    <span class="metric-label">Recusas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action btn-green">Disparar TCLE <i class="fas fa-file-contract"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="journey-step" id="st-5">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-blue"><i class="fas fa-file-signature"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">05</span>
+                                <h3>TCLE Assinado</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Termo de consentimento (LGPD) assinado digitalmente. Liberado para marcar.</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-blue">25</span>
+                                    <span class="metric-label">Assinados</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value">5</span>
+                                    <span class="metric-label">Aguardando</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action">Auditar Logs <i class="fas fa-shield-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="journey-step" id="st-6">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-purple"><i class="fas fa-calendar-check"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">06</span>
+                                <h3>Agendados</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Agendamento self-service (Cal.com) ou confirmação de vagas no Focus Group.</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-purple">18</span>
+                                    <span class="metric-label">Agendados</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value">2</span>
+                                    <span class="metric-label">Salas (FG)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action btn-purple">Ver Calendário <i class="far fa-calendar-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3: Forward (Left -> Right) -->
+            <div class="journey-level level-forward" style="margin-bottom: 5vh;">
+                <!-- Step 7 -->
+                <div class="journey-step" id="st-7">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-orange"><i class="fas fa-video"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">07</span>
+                                <h3>Realizados</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Entrevistas ou testes de UX concluídos. Tratamento de reagendamento (Faltas).</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-orange">10</span>
+                                    <span class="metric-label">Concluídas</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value" style="color:var(--color-red)">10%</span>
+                                    <span class="metric-label">Faltas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action">Painel do Cliente <i class="fas fa-chart-pie"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="journey-step" id="st-8">
+                    <div class="station-card">
+                        <div class="station-glow"></div>
+                        <div class="station-header">
+                            <div class="station-icon icon-green"><i class="fas fa-hand-holding-usd"></i></div>
+                            <div class="station-title">
+                                <span class="step-num">08</span>
+                                <h3>Incentivos Pagos</h3>
+                            </div>
+                        </div>
+                        <div class="station-body">
+                            <p class="station-desc">Gestão financeira do projeto. Participantes notificados sobre o pagamento.</p>
+                            <div class="station-metrics">
+                                <div class="metric-box">
+                                    <span class="metric-value highlight-green">5</span>
+                                    <span class="metric-label">Pagos</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-value">5</span>
+                                    <span class="metric-label">Pendentes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="station-footer">
+                            <button class="btn-action btn-green">Baixar Planilha <i class="fas fa-file-excel"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty Placeholder to keep Step 8 in the Center -->
+                <div class="journey-step" style="opacity: 0; pointer-events: none;"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- EQUIPE VIEW -->
+    <main class="journey-container" id="view-equipe" style="display: none; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="color: #fff; margin-bottom: 30px; font-size: 2rem;">Membros da Equipe</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+                <!-- Team Member 1 -->
+                <div class="station-card" style="padding: 20px; text-align: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--color-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 15px; font-weight: bold;">CO</div>
+                    <h3 style="color: #fff; margin-bottom: 5px;">Carlos Oliveira</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">Criador de Projetos</p>
+                    <button class="btn-action btn-blue" style="width: 100%;">Editar Perfil</button>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="station-card" style="padding: 20px; text-align: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--color-purple); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 15px; font-weight: bold;">MT</div>
+                    <h3 style="color: #fff; margin-bottom: 5px;">Mariana Torres</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">Gestora de Tráfego</p>
+                    <button class="btn-action" style="width: 100%;">Editar Perfil</button>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="station-card" style="padding: 20px; text-align: center;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--color-green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 15px; font-weight: bold;">FS</div>
+                    <h3 style="color: #fff; margin-bottom: 5px;">Felipe Silva</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">Atendimento (VoIP)</p>
+                    <button class="btn-action" style="width: 100%;">Editar Perfil</button>
+                </div>
+                <!-- Add New -->
+                <div class="station-card" style="padding: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed rgba(255,255,255,0.1); background: transparent; cursor: pointer;">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 15px;"><i class="fas fa-plus"></i></div>
+                    <h3 style="color: var(--text-secondary);">Convidar Membro</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- RELATORIOS VIEW -->
+    <main class="journey-container" id="view-relatorios" style="display: none; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="color: #fff; margin-bottom: 30px; font-size: 2rem;">Relatórios de Desempenho</h2>
+            <div class="station-card" style="padding: 40px; text-align: center; color: var(--text-secondary);">
+                <i class="fas fa-chart-bar" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3>Módulo de BI em Desenvolvimento</h3>
+                <p style="max-width: 400px; margin: 10px auto;">Os gráficos avançados de conversão do funil estarão disponíveis na próxima atualização.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- CONFIGURACOES VIEW -->
+    <main class="journey-container" id="view-configuracoes" style="display: none; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="color: #fff; margin-bottom: 30px; font-size: 2rem;">Configurações do Sistema</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="station-card" style="padding: 30px;">
+                    <h3 style="color: #fff; margin-bottom: 15px;"><i class="fas fa-plug text-blue"></i> Integrações API</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Gerencie as conexões com Evolution API, Cal.com e Gateways.</p>
+                    <button class="btn-action">Gerenciar Chaves</button>
+                </div>
+                <div class="station-card" style="padding: 30px;">
+                    <h3 style="color: #fff; margin-bottom: 15px;"><i class="fas fa-bell text-orange"></i> Alertas</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Configure quando o sistema deve avisar sobre gargalos no funil.</p>
+                    <button class="btn-action">Configurar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Parallax Background Layers -->
+    <div id="parallax-bg-1" class="parallax-layer stars-1"></div>
+    <div id="parallax-bg-2" class="parallax-layer stars-2"></div>
+    <div id="parallax-bg-3" class="parallax-layer nebula"></div>
+
+    <!-- Interactive Modal -->
+    <div class="modal-overlay" id="interactive-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon" id="modal-icon"></div>
+                <div class="modal-title-area">
+                    <span class="modal-subtitle" id="modal-subtitle"></span>
+                    <h2 id="modal-title"></h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-loader" id="modal-loader">
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text" style="width:70%;"></div>
+                    <div class="skeleton-table">
+                        <div class="skeleton skeleton-row"></div>
+                        <div class="skeleton skeleton-row"></div>
+                        <div class="skeleton skeleton-row"></div>
+                    </div>
+                </div>
+                <div class="modal-data" id="modal-data" style="display: none;">
+                    <!-- Dynamically injected content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirm Modal Premium -->
+    <div class="modal-overlay" id="custom-confirm-overlay" style="display: none; z-index: 9999; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 17, 32, 0.85); backdrop-filter: blur(10px);">
+        <div style="position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; max-width: 420px; width: 90%; padding: 40px 30px; text-align: center; animation: slideUpFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03) inset;">
+            <!-- Subtle red glow at top -->
+            <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 70%; height: 120px; background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
+            
+            <div style="position: relative; width: 80px; height: 80px; border-radius: 50%; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); color: var(--color-red); font-size: 2.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 0 30px rgba(239, 68, 68, 0.1);">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            
+            <h2 id="confirm-title" style="color: #f8fafc; margin-bottom: 12px; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; position: relative;">Atenção!</h2>
+            
+            <p id="confirm-message" style="color: #94a3b8; margin-bottom: 35px; line-height: 1.6; font-size: 0.95rem; font-weight: 400; position: relative;">Tem certeza que deseja realizar esta ação?</p>
+            
+            <div style="display: flex; gap: 16px; justify-content: center; position: relative;">
+                <button class="btn-action" id="btn-confirm-cancel" style="flex: 1; padding: 12px 0; font-size: 0.95rem; font-weight: 500; background: transparent; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; transition: all 0.3s; box-shadow: none;" onmouseover="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='#cbd5e1';">Cancelar</button>
+                <button class="btn-action" id="btn-confirm-ok" style="flex: 1; padding: 12px 0; font-size: 0.95rem; font-weight: 600; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #fff; border: none; border-radius: 10px; transition: all 0.3s; box-shadow: 0 8px 16px -4px rgba(239, 68, 68, 0.4);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 20px -4px rgba(239, 68, 68, 0.6)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 16px -4px rgba(239, 68, 68, 0.4)';">Sim, apagar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js?v=4"></script>
+</body>
+</html>
