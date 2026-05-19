@@ -1,0 +1,8 @@
+{
+  "name": "qualipanel-static",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx serve . -p 8080 --no-clipboard",
+    "start": "npx serve . -p 8080 --no-clipboard"
+  }
+}

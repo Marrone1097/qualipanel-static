@@ -3,7 +3,8 @@
 // ==========================================
 const SUPABASE_URL = 'https://ygdihknianukzjcdrduu.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlnZGloa25pYW51a3pqY2RyZHV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNDMzNzAsImV4cCI6MjA5NDcxOTM3MH0.4w2PpVU3glCQH6bR95vrZ7qEdfwOEZcYocuA0LnLJJo';
-const API_BASE = 'https://qualipanel.vercel.app/api';
+const IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+const API_BASE = IS_LOCAL ? 'http://localhost:3000/api' : 'https://qualipanel.vercel.app/api';
 
 let currentProjectId = null;
 let currentUser = null;
